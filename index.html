@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneha Pasam - Cloud & DevOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px #00f5ff); }
+            to { filter: drop-shadow(0 0 20px #ff00ea); }
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover {
+            background: linear-gradient(45deg, #00f5ff, #ff00ea);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 245, 255, 0.4);
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 245, 255, 0.3);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00f5ff;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 234, 0.1));
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid #00f5ff;
+            border-radius: 10px;
+        }
+
+        .experience-title {
+            font-size: 1.5rem;
+            color: #00f5ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: #ff00ea;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-date {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.05), rgba(255, 0, 234, 0.05));
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 20px 50px rgba(0, 245, 255, 0.4);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #00f5ff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00ea);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 1rem 0.5rem;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav { flex-direction: column; gap: 0.5rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div class="content">
+        <header>
+            <h1>Sneha Pasam</h1>
+            <p class="tagline">Cloud & DevOps Engineer | Python • AWS • Docker • Linux</p>
+        </header>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <section id="about">
+            <div class="card">
+                <h2>About Me</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    My journey in technology began with a B.Tech in Computer Science and a fascination for how code moves from a local machine to the global cloud. Currently working as a Software Engineer at Dusker AI, I specialize in creating deterministic evaluation environments for AI agents, architecting Docker-based execution environments, and automating complex pipelines with Python and Bash.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                    I believe that great software isn't just about writing code—it's about building the infrastructure that allows it to scale securely and efficiently. As a professional with 7 AWS-recognized certifications, I'm always looking for ways to optimize workflows and implement DevOps best practices.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a href="https://www.linkedin.com/in/sneha-pasam-768a6922b" class="cta-button" target="_blank">View LinkedIn</a>
+                    <a href="https://github.com/sneha-pasam" class="cta-button" target="_blank">GitHub Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Toolkit</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>☁️ Cloud</h3>
+                    <p>AWS (EC2, S3, IAM, VPC, Lambda, CloudWatch)</p>
+                </div>
+                <div class="skill-item">
+                    <h3>🐳 DevOps</h3>
+                    <p>Docker, Jenkins, CI/CD Pipelines, Git/GitHub</p>
+                </div>
+                <div class="skill-item">
+                    <h3>💻 Systems</h3>
+                    <p>Linux, Bash Scripting, Python, Process Management</p>
+                </div>
+                <div class="skill-item">
+                    <h3>🤖 AI & Automation</h3>
+                    <p>AI-Agent Benchmarking, Terminal Evaluation, Automated Testing</p>
+                </div>
+                <div class="skill-item">
+                    <h3>🛠️ Tools</h3>
+                    <p>Terraform, Ansible, Kubernetes, SQLite, JSON APIs</p>
+                </div>
+                <div class="skill-item">
+                    <h3>🔧 Core Skills</h3>
+                    <p>Problem Solving, Communication, Team Collaboration</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-title">Software Engineer – Terminal Bench (Remote)</div>
+                <div class="experience-company">Dusker AI · Freelance</div>
+                <div class="experience-date">Dec 2025 - Dec 2025 · 1 month</div>
+                <p>Engineering and maintaining large-scale AI evaluation benchmarks within real Linux environments. Focused on bridging the gap between AI agent demos and production-ready terminal workflows.</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                    <li>Developed complex terminal-based evaluation tasks for AI benchmarking with clear success criteria</li>
+                    <li>Architected Docker-based execution environments for 100% reproducibility</li>
+                    <li>Automated large-scale evaluation pipelines using Bash and Python</li>
+                    <li>Debugged deep-level Linux issues involving process signals and filesystem permissions</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-title">AWS Cloud Intern</div>
+                <div class="experience-company">F13 Technologies · Internship</div>
+                <div class="experience-date">Dec 2024 - May 2025 · 6 months</div>
+                <p>Gained hands-on experience with AWS services including EC2, S3, Load Balancers, and more. Collaborated with skilled engineers in a virtual environment.</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                    <li>Deployed and managed cloud resources on AWS with secure IAM configurations</li>
+                    <li>Tackled real-world customer case simulations and presented solutions to senior leadership</li>
+                    <li>Collaborated with DevOps team using Terraform, Ansible, and Git</li>
+                    <li>Optimized resource utilization and cost efficiency using CloudWatch</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-title">Harbor Tasks Portfolio</div>
+                    <p>A curated collection of AI-agent benchmarking tasks developed using the Harbor framework, focusing on log analysis, containerization, and automated terminal debugging.</p>
+                    <a href="https://github.com/sneha-pasam/harbor-tasks-portfolio" class="cta-button" target="_blank" style="margin-top: 1rem; font-size: 0.9rem;">View on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">CI/CD Pipeline Automation</div>
+                    <p>Designed and implemented a comprehensive CI/CD pipeline using Jenkins, Docker, and Kubernetes to automate software delivery and deployment with high availability.</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Automated Resume Builder</div>
+                    <p>OOP-based Python application that automates resume generation, demonstrating clean code architecture, data structures, and version control best practices.</p>
+                    <a href="https://github.com/sneha-pasam" class="cta-button" target="_blank" style="margin-top: 1rem; font-size: 0.9rem;">View on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Automatic Timetable Generator</div>
+                    <p>Developed using Genetic Algorithms with Python Tkinter GUI and SQLite database. Optimized resource allocation and eliminated manual scheduling conflicts.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Let's Connect</h2>
+            <div class="card">
+                <p style="font-size: 1.1rem; text-align: center; margin-bottom: 2rem;">
+                    Always open to discussing Cloud architecture, automation strategies, or entry-level opportunities in the DevOps and Site Reliability space.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <strong>📧 Email</strong><br>
+                        snehapasam63@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <strong>📱 Phone</strong><br>
+                        +91-9100410084
+                    </div>
+                    <div class="contact-item">
+                        <strong>📍 Location</strong><br>
+                        Hyderabad, Telangana, India
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="https://www.linkedin.com/in/sneha-pasam-768a6922b" class="cta-button" target="_blank">Connect on LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Sneha Pasam. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; color: #a0a0a0;">Cloud & DevOps Engineer | Open to Work</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js 3D Background
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 3000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 100;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.15,
+            color: 0x00f5ff,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Create floating cubes
+        const cubes = [];
+        for(let i = 0; i < 20; i++) {
+            const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+            const material = new THREE.MeshBasicMaterial({
+                color: Math.random() > 0.5 ? 0x00f5ff : 0xff00ea,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.3
+            });
+            const cube = new THREE.Mesh(geometry, material);
+            cube.position.set(
+                (Math.random() - 0.5) * 50,
+                (Math.random() - 0.5) * 50,
+                (Math.random() - 0.5) * 50
+            );
+            scene.add(cube);
+            cubes.push(cube);
+        }
+
+        camera.position.z = 30;
+
+        // Mouse movement
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate particles
+            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.x += 0.0005;
+
+            // Animate cubes
+            cubes.forEach((cube, i) => {
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                cube.position.y += Math.sin(Date.now() * 0.001 + i) * 0.01;
+            });
+
+            // Camera follows mouse
+            camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 5 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Responsive
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
